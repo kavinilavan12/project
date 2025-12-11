@@ -1,9 +1,7 @@
 FROM maven:3.9.9-eclipse-temurin-21-jammy AS BUILD_IMAGE
-RUN  git clone https://github.com/kavinilavan12/project.git
-WORKDIR /project
-RUN  git checkout kavi 
+RUN  git clone -b kavi https://github.com/kavinilavan12/project.git
 WORKDIR /project/power
-RUN mvn install
+RUN mvn clean install -DskipTests
 
 FROM tomcat:10-jdk21
 RUN rm -rf /usr/local/tomcat/webapps/*
